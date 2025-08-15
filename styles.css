@@ -1,0 +1,30 @@
+*{box-sizing:border-box} :root{--bg:#0b1020;--card:#151b2f;--muted:#9aa4b2;--text:#e8eef6;--primary:#0ea5e9;--outline:#2a3250;--ok:#22c55e;--warn:#f59e0b}
+html,body{margin:0;padding:0;background:linear-gradient(180deg,#0b1020,#0d1326);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif}
+.container{max-width:980px;margin:0 auto;padding:16px}
+header h1{margin:0 0 6px 0}
+.muted{color:var(--muted)}
+.small{font-size:.9rem}
+.card{background:var(--card);border:1px solid var(--outline);border-radius:16px;padding:16px;margin:16px 0;box-shadow:0 6px 30px rgba(0,0,0,.2)}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.grid .full{grid-column:1/-1}
+.row{display:flex;align-items:flex-end;justify-content:space-between}
+.row.gap{gap:8px}
+label{display:block;font-weight:600;margin-bottom:6px}
+input,select,textarea{width:100%;padding:10px 12px;border-radius:12px;border:1px solid var(--outline);background:#10162b;color:var(--text);outline:none}
+textarea{resize:vertical}
+.btn{border:1px solid var(--outline);background:#10162b;color:var(--text);padding:10px 14px;border-radius:999px;cursor:pointer}
+.btn:hover{border-color:#3a4470}
+.btn.primary{background:var(--primary);border-color:var(--primary);color:#001825;font-weight:700}
+.btn.outline{background:transparent}
+table{width:100%;border-collapse:separate;border-spacing:0 8px}
+th,td{text-align:left;padding:10px 12px}
+thead th{color:var(--muted);font-weight:700;border-bottom:1px solid var(--outline)}
+tbody tr{background:#111731;border:1px solid var(--outline)}
+tbody td:first-child{border-radius:12px 0 0 12px}
+tbody td:last-child{border-radius:0 12px 12px 0}
+.tag{display:inline-block;padding:2px 8px;border-radius:999px;font-size:.8rem;border:1px solid var(--outline);color:var(--muted)}
+.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.stat{background:#10162b;border:1px solid var(--outline);border-radius:12px;padding:12px}
+.stat h3{margin:0 0 6px 0;font-size:1rem;color:var(--muted)}
+.stat p{margin:0;font-weight:700}
+@media (max-width:840px){.grid{grid-template-columns:1fr} .stats{grid-template-columns:1fr} .row{flex-direction:column;align-items:stretch;gap:8px}}

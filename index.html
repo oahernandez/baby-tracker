@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bebé Tracker</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="styles.css" />
+  <meta name="theme-color" content="#0ea5e9" />
+</head>
+<body>
+  <header class="container">
+    <h1>🍼 Bebé Tracker</h1>
+    <p class="muted">Registra lactancia, sueño, juego y baños. Funciona offline.</p>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <div class="row">
+        <div>
+          <label for="datePicker">Día</label>
+          <input type="date" id="datePicker" />
+        </div>
+        <div class="row gap">
+          <button id="btnHoy" class="btn">Hoy</button>
+          <button id="btnExport" class="btn outline">Exportar CSV</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Nuevo evento</h2>
+      <form id="eventForm">
+        <input type="hidden" id="eventId" />
+        <div class="grid">
+          <div>
+            <label for="tipo">Tipo</label>
+            <select id="tipo" required>
+              <option value="lactancia">Lactancia</option>
+              <option value="sueno">Sueño</option>
+              <option value="juego">Juego</option>
+              <option value="bano">Baño</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="inicio">Inicio</label>
+            <input type="datetime-local" id="inicio" required />
+          </div>
+
+          <div>
+            <label for="fin">Fin (opcional)</label>
+            <input type="datetime-local" id="fin" />
+          </div>
+
+          <div data-for="lactancia" class="conditional">
+            <label for="modo">Modo</label>
+            <select id="modo">
+              <option value="pecho" selected>Pecho</option>
+              <option value="biberon">Biberón</option>
+              <option value="jeringa">Jeringa</option>
+            </select>
+          </div>
+
+          <div data-for="lactancia" data-when="pecho" class="conditional">
+            <label for="lado">Lado</label>
+            <select id="lado">
+              <option value="">—</option>
+              <option value="izquierda">Izquierda</option>
+              <option value="derecha">Derecha</option>
+            </select>
+          </div>
+
+          <div data-for="lactancia" data-when="biberon|jeringa" class="conditional">
+            <label for="volumen">Volumen (ml)</label>
+            <input type="number" id="volumen" min="0" step="1" placeholder="ej. 60" />
+          </div>
+
+          <div data-for="juego" class="conditional">
+            <label for="actividad">Actividad</label>
+            <input type="text" id="actividad" placeholder="cuentos, tummy time, música…" />
+          </div>
+
+          <div data-for="bano" class="conditional">
+            <label for="notasBano">Notas de baño</label>
+            <input type="text" id="notasBano" placeholder="espuma, tina, etc." />
+          </div>
+
+          <div class="full">
+            <label for="notas">Notas (opcional)</label>
+            <textarea id="notas" rows="2" placeholder="observaciones…"></textarea>
+          </div>
+        </div>
+
+        <div class="row gap">
+          <button type="submit" class="btn primary" id="btnGuardar">Guardar evento</button>
+          <button type="button" class="btn" id="btnLimpiar">Limpiar</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Resumen del día</h2>
+      <div id="resumen" class="stats"></div>
+    </section>
+
+    <section class="card">
+      <h2>Eventos</h2>
+      <div id="emptyMsg" class="muted" style="display:none">Sin eventos para este día.</div>
+      <table id="tablaEventos">
+        <thead>
+          <tr>
+            <th>Tipo</th>
+            <th>Inicio</th>
+            <th>Fin</th>
+            <th>Detalle</th>
+            <th>Duración</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer class="container muted small">
+    <p>Tu información se guarda localmente (IndexedDB) y funciona sin conexión. Puedes exportar a CSV.</p>
+  </footer>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
